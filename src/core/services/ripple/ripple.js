@@ -94,9 +94,12 @@ function InkRippleService($window, $timeout) {
         break;
     }
 
+    // element.parent().on('focus', onFocus)
+    //   .on('blur', onBlur);
+
     // expose onInput for ripple testing
     if (options.mousedown) {
-      element.on('$md.pressdown', onPressDown)
+      element.parent().on('$md.pressdown', onPressDown)
         .on('$md.pressup', onPressUp);
     }
 
@@ -114,8 +117,12 @@ function InkRippleService($window, $timeout) {
 
     // Publish self-detach method if desired...
     return function detach() {
-      element.off('$md.pressdown', onPressDown)
+      element.parent().off('$md.pressdown', onPressDown)
         .off('$md.pressup', onPressUp);
+
+      // element.parent().off('focus', onFocus)
+      //   .off('blur', onBlur);
+
       getRippleContainer().remove();
     };
 
@@ -354,6 +361,25 @@ function InkRippleService($window, $timeout) {
       isHeld = false;
       var ripple = ripples[ ripples.length - 1 ];
       $timeout(function () { updateElement(ripple); }, 0, false);
+    }
+
+    /**
+     * Handles keyboard events
+     *
+     */
+    function onFocus(ev) {
+      if (!isRippleAllowed()) return;
+
+      // focus indicator needs to show selection
+      var selected = !!ev.currentTarget.hasClass('md-checked');
+
+      //var ripple = createFocusRipple(selected);
+    }
+
+    function onBlur(ev) {
+      // remove focus indicator
+
+      //removeFocusRipple();
     }
 
     /**
