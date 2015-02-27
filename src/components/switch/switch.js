@@ -80,6 +80,8 @@ function MdSwitch(mdCheckboxDirective, $mdTheming, $mdUtil, $document, $mdConsta
       var thumbContainer = angular.element(element[0].querySelector('.md-thumb-container'));
       var switchContainer = angular.element(element[0].querySelector('.md-container'));
 
+      scope.mouseActive = false;
+
       // no transition on initial load
       $$rAF(function() {
         element.removeClass('md-dragging');
@@ -92,6 +94,15 @@ function MdSwitch(mdCheckboxDirective, $mdTheming, $mdUtil, $document, $mdConsta
           element.attr('tabindex', isDisabled ? -1 : 0);
         });
       }
+
+      // keypress after clicking does not show focus circle
+      element
+        .on('mouseover', function() { scope.mouseActive = true; })
+        .on('mouseout', function() { scope.mouseActive = false; })
+        .on('focus', function() {
+          if(scope.mouseActive === false) element.addClass('focus');
+        })
+        .on('blur', function() { element.removeClass('focus'); });
 
       // These events are triggered by setup drag
       $mdGesture.register(switchContainer, 'drag');

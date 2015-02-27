@@ -18,7 +18,6 @@ md-radio-button.md-THEME_NAME-theme {
   }
 
   &:not([disabled]) {
-
     &.md-primary {
       .md-on {
         background-color: '{{primary-color-0.87}}';
@@ -33,7 +32,6 @@ md-radio-button.md-THEME_NAME-theme {
         color: '{{primary-600}}';
       }
     }
-
     &.md-warn {
       .md-on {
         background-color: '{{warn-color-0.87}}';
@@ -48,7 +46,6 @@ md-radio-button.md-THEME_NAME-theme {
         color: '{{warn-600}}';
       }
     }
-
   }
 
   &[disabled] {
@@ -59,10 +56,15 @@ md-radio-button.md-THEME_NAME-theme {
       border-color: '{{foreground-3}}';
     }
   }
-
 }
-
-
 md-radio-group.md-THEME_NAME-theme:focus:not(:empty) {
-  border-color: '{{foreground-1}}';
+  .md-checked .md-container:before {
+    background-color: '{{accent-color-0.26}}';
+  }
+  .md-checked:not([disabled]).md-primary .md-container:before {
+    background-color: '{{primary-color-0.26}}';
+  }
+  .md-checked.md-primary .md-container:before {
+    background-color: '{{warn-color-0.26}}';
+  }
 }

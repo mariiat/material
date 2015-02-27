@@ -24,7 +24,7 @@ md-checkbox {
       bottom: -8px;
     }
 
-    &:not(.md-checked), &:not([disabled]) {
+    &:not(.md-checked) {
       .md-container:before {
         background-color: rgba(0, 0, 0, 0.12);
       }

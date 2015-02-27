@@ -98,8 +98,17 @@ function MdCheckboxDirective(inputDirective, $mdInkRipple, $mdAria, $mdConstant,
         0: {}
       }, attr, [ngModelCtrl]);
 
+      scope.mouseActive = false;
+
       element.on('click', listener)
-        .on('keypress', keypressHandler);
+        .on('keypress', keypressHandler)
+        .on('mouseover', function() { scope.mouseActive = true; })
+        .on('mouseout', function() { scope.mouseActive = false; })
+        .on('focus', function() {
+          if(scope.mouseActive === false) element.addClass('focus');
+        })
+        .on('blur', function() { element.removeClass('focus'); });
+
       ngModelCtrl.$render = render;
 
       function keypressHandler(ev) {

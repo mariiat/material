@@ -67,6 +67,7 @@ function mdRadioGroupDirective($mdUtil, $mdConstant, $mdTheming) {
     $mdTheming(element);
     var rgCtrl = ctrls[0];
     var ngModelCtrl = ctrls[1] || $mdUtil.fakeNgModel();
+    scope.mouseActive = false;
 
     function keydownListener(ev) {
       switch(ev.keyCode) {
@@ -97,7 +98,13 @@ function mdRadioGroupDirective($mdUtil, $mdConstant, $mdTheming) {
               'role': 'radiogroup',
               'tabIndex': element.attr('tabindex') || '0'
             })
-            .on('keydown', keydownListener);
+            .on('keydown', keydownListener)
+            .on('mouseover', function() { scope.mouseActive = true; })
+            .on('mouseout', function() { scope.mouseActive = false; })
+            .on('focus', function() {
+              if(scope.mouseActive === false) element.addClass('focus');
+            })
+            .on('blur', function() { element.removeClass('focus'); });
 
   }
 
