@@ -1007,7 +1007,7 @@ function SelectProvider($$interimElementProvider) {
         selectNode.style[$mdConstant.CSS.TRANSFORM] = '';
         if (focusedNode) {
           opts.focusedNode = focusedNode;
-          focusedNode.focus();
+          //focusedNode.focus();
         }
       });
     }
