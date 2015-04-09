@@ -8678,6 +8678,7 @@ function SidenavDirective($timeout, $animate, $parse, $log, $mdMedia, $mdConstan
 
       return promise = $q.all([
         $animate[isOpen ? 'enter' : 'leave'](backdrop, parent),
+        //TODO remove after fixed (body scroll when sidenav opened)
         $animate[isOpen ? 'addClass' : 'removeClass']($document.find('body'),'sidenav-opened'),
         $animate[isOpen ? 'removeClass' : 'addClass'](element, 'md-closed').then(function() {
           // If we opened, and haven't closed again before the animation finished

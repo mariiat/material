@@ -6355,6 +6355,9 @@ md-sidenav {
     border-left: 1px solid #fff; }
  }
 
+.sidenav-opened {
+  overflow: hidden; }
+
 @-webkit-keyframes sliderFocusThumb {
   0% {
     opacity: 0;

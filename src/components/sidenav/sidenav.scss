@@ -120,3 +120,8 @@ md-sidenav {
     border-left: 1px solid #fff;
   }
 }
+
+//TODO remove after fix body scroll when side nav opened
+.sidenav-opened {
+  overflow: hidden;
+}
